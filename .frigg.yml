@@ -1,0 +1,4 @@
+tasks:
+ - npm install
+ - node_modules/.bin/jshint src index.js
+ - node_modules/.bin/jscs src index.js

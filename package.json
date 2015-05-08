@@ -1,0 +1,31 @@
+{
+  "name": "rpc-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "browser": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "make": "browserify -t browserify-handlebars src/main.js -o public/bundle.js",
+    "watchify": "watchify -t browserify-handlebars src/main.js -o public/bundle.js",
+    "watch": "npm run watchify & node index.js"
+  },
+  "author": "Rolf Erik Lekang",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.9.25",
+    "browserify": "^10.1.0",
+    "browserify-handlebars": "^1.0.0",
+    "browserify-jquery": "^1.6.3",
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "jquery": "^2.1.4",
+    "peerjs-rpc": "^3.3.0",
+    "requests": "^0.1.1"
+  },
+  "devDependencies": {
+    "jscs": "^1.13.1",
+    "jshint": "^2.7.0",
+    "watchify": "^3.2.1"
+  }
+}

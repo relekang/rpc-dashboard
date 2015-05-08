@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs">
+  {{#each nodes}}
+    <li><a href="#{{hash}}"role="tab" data-toggle="tab">{{hash}}</a></li>
+  {{/each}}
+</ul>
+<div class="tab-content">
+  {{#each nodes}}
+    <div role="tabpanel" class="tab-pane" id="{{hash}}">
+      <h2>
+        {{hash}}
+        <i class="fa fa-refresh refresh-node-btn" data-hash="{{hash}}"></i>
+      </h2>
+      <strong>Location:</strong> {{#if location}}{{location.latitude}}, {{location.longitude}}{{/if}}</br>
+      <strong>Predecessor</strong> {{predecessor.hash}}</br>
+      <strong>Successor</strong> {{successor.hash}}</br>
+      <h3>Finger table:</h3>
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <th>#</th>
+          <th>interval</th>
+          <th>hash</th>
+        </tr>
+      {{#each finger}}
+        <tr>
+          <td>{{i}}</td>
+          <td>{{interval}}</td>
+          <td>{{node.hash}}</td>
+        </tr>
+      {{/each}}
+      </table>
+    </div>
+  {{/each}}
+</div>
