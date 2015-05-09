@@ -21,7 +21,8 @@
     "express": "^4.12.3",
     "jquery": "^2.1.4",
     "peerjs-rpc": "^3.3.0",
-    "requests": "^0.1.1"
+    "requests": "^0.1.1",
+    "sha1": "^1.1.0"
   },
   "devDependencies": {
     "jscs": "^1.13.1",
