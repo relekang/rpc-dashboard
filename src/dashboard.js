@@ -2,7 +2,7 @@ var $ = require('jquery');
 var sha1 = require('sha1');
 var RPC = require('peerjs-rpc');
 
-module.exports.init = function init(options){
+module.exports.init = function init(options) {
   var rpc = new RPC('dashboard' + sha1(Date.now().toString()), {}, options.rpcOptions);
   var utils = require('./utils')(rpc, options.rpcOptions.server, options.template);
 

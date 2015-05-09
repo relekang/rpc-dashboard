@@ -64,7 +64,6 @@ module.exports = function utils(rpc, server, template) {
     });
   }
 
-
   function get(hash, key) {
     return rpc.invoke(hash, 'get', [key])
       .then(function(result) {
