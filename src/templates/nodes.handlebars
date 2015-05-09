@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  {{#each nodes}}
+  {{#each items}}
     <li>
       <a href="#{{hash}}" data-hash="{{hash}}" role="tab" data-toggle="tab">
         {{hash}}
@@ -9,7 +9,7 @@
 </ul>
 <div id="alerts"></div>
 <div class="tab-content">
-  {{#each nodes}}
+  {{#each items}}
     <div role="tabpanel" class="tab-pane" id="{{hash}}">
       <h2>
         {{hash}}

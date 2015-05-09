@@ -4,25 +4,23 @@ var alerts = require('./alerts');
 
 Bluebird.longStackTraces();
 
-module.exports = function utils(rpc) {
-  var nodes = {};
-  var template = require('./templates/nodes.handlebars');
-  var server = require('./rpc-options').server;
+module.exports = function utils(rpc, server, template) {
+  var items = {};
 
-  function update($container) {
-    nodes = {};
+  function update($container, done) {
+    items = {};
     return api.remotes(server)
       .then(function(remotes) {
         return Bluebird.each(remotes, function(remote) {
           if (remote.match(/^dashboard/)) return;
           return rpc.invoke(remote, 'obj', [])
             .then(function(data) {
-              nodes[remote] = JSON.parse(data);
+              items[remote] = JSON.parse(data);
             });
         });
       })
       .then(function() {
-        render($container);
+        render($container, done);
       })
       .catch(function(error) {
         //alert(error.message);
@@ -30,11 +28,11 @@ module.exports = function utils(rpc) {
       });
   }
 
-  function updateNode(hash, $container) {
+  function updateItem(hash, $container, done) {
     return rpc.invoke(hash, 'obj', [])
       .then(function(data) {
-        nodes[hash] = JSON.parse(data);
-        render($container);
+        items[hash] = JSON.parse(data);
+        render($container, done);
       });
   }
 
@@ -83,20 +81,23 @@ module.exports = function utils(rpc) {
       });
   }
 
-  function render($container) {
-    var listOfNodes = [];
-    for (var key in nodes) {
-      listOfNodes.push(nodes[key]);
+  function render($container, done) {
+    var listOfItems = [];
+    for (var key in items) {
+      listOfItems.push(items[key]);
     }
 
-    $container.html(template({ nodes: listOfNodes}));
+    $container.html(template({ items: listOfItems}));
+
+    if (done) done();
+
     $('.refresh-node-btn')
       .off('click')
       .on('click', function() {
         var $el = $(this);
         var hash = $el.data('hash');
         $el.addClass('fa-spin');
-        updateNode(hash, $container)
+        updateItem(hash, $container)
           .then(function() {
             $el.removeClass('fa-spin');
             $('.nav [data-hash=' + hash + ']').click();
@@ -110,6 +111,6 @@ module.exports = function utils(rpc) {
 
   return {
     update: update,
-    updateNode: updateNode
+    updateItem: updateItem
   };
 };
