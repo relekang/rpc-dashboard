@@ -1,8 +1,13 @@
 <ul class="nav nav-tabs">
   {{#each nodes}}
-    <li><a href="#{{hash}}"role="tab" data-toggle="tab">{{hash}}</a></li>
+    <li>
+      <a href="#{{hash}}" data-hash="{{hash}}" role="tab" data-toggle="tab">
+        {{hash}}
+      </a>
+    </li>
   {{/each}}
 </ul>
+<div id="alerts"></div>
 <div class="tab-content">
   {{#each nodes}}
     <div role="tabpanel" class="tab-pane" id="{{hash}}">
@@ -13,6 +18,21 @@
       <strong>Location:</strong> {{#if location}}{{location.latitude}}, {{location.longitude}}{{/if}}</br>
       <strong>Predecessor</strong> {{predecessor.hash}}</br>
       <strong>Successor</strong> {{successor.hash}}</br>
+
+      <form class="form-inline">
+        <input type="hidden" name="hash" id="id_hash" value="{{hash}}" />
+        <div class="form-group">
+          <input type="text" class="form-control" id="id_key" name="key" placeholder="Key">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="id_value" name="value" placeholder="Value">
+        </div>
+        <button type="submit" class="btn btn-default" data-action="set">Set</button>
+        <button type="submit" class="btn btn-default" data-action="get">Get</button>
+
+        <i class="fa fa-2x fa-spinner fa-pulse" style="display:none"></i>
+      </form>
+
       <h3>Finger table:</h3>
       <table class="table table-striped table-bordered table-condensed">
         <tr>
