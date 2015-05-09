@@ -20,7 +20,7 @@ module.exports = function utils(rpc, server, template) {
               $container.html(progressBarTemplate({
                 number: remotes.indexOf(remote) + 1,
                 max: remotes.length,
-                percent: (remotes.indexOf(remote) + 1) / remotes.length * 100,
+                percent: (remotes.indexOf(remote) + 1) / remotes.length * 100
               }));
             });
         });
@@ -29,7 +29,6 @@ module.exports = function utils(rpc, server, template) {
         render($container, done);
       })
       .catch(function(error) {
-        //alert(error.message);
         throw error;
       });
   }

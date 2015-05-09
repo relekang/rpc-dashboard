@@ -39,12 +39,14 @@
           <th>#</th>
           <th>interval</th>
           <th>hash</th>
+          <th>location</th>
         </tr>
       {{#each finger}}
         <tr>
           <td>{{i}}</td>
           <td>{{interval}}</td>
           <td>{{node.hash}}</td>
+          <td>{{#if node.location}}{{node.location.latitude}}, {{node.location.longitude}}{{/if}}</td>
         </tr>
       {{/each}}
       </table>
