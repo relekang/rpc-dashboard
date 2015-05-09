@@ -19,6 +19,6 @@ module.exports = {
     path: '/dht'
   },
   timeout: 36000000,
-  debug: true,
+  debug: false,
   server: server
 };
