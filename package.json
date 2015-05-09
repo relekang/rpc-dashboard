@@ -8,15 +8,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "make": "browserify -t browserify-handlebars src/main.js -o public/bundle.js",
     "watchify": "watchify -t browserify-handlebars src/main.js -o public/bundle.js",
-    "watch": "npm run watchify & node index.js"
+    "watch": "npm run watchify & node index.js",
+    "postinstall": "npm run make"
   },
   "author": "Rolf Erik Lekang",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.25",
+    "browser-request": "^0.3.3",
     "browserify": "^10.1.0",
     "browserify-handlebars": "^1.0.0",
     "browserify-jquery": "^1.6.3",
+    "circular-json": "^0.1.6",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "jquery": "^2.1.4",
