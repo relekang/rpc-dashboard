@@ -1,6 +1,7 @@
 var Bluebird = require('bluebird');
 var api = require('./api');
 var alerts = require('./alerts');
+var progressBarTemplate = require('./templates/progress.handlebars');
 
 Bluebird.longStackTraces();
 
@@ -16,6 +17,11 @@ module.exports = function utils(rpc, server, template) {
           return rpc.invoke(remote, 'obj', [])
             .then(function(data) {
               items[remote] = JSON.parse(data);
+              $container.html(progressBarTemplate({
+                number: remotes.indexOf(remote) + 1,
+                max: remotes.length,
+                percent: (remotes.indexOf(remote) + 1) / remotes.length * 100,
+              }));
             });
         });
       })
