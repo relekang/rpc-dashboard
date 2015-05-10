@@ -10,8 +10,15 @@ module.exports = function utils(rpc, server, template) {
 
   function update($container, done) {
     items = {};
+    $container.html('<h1 class="text-center">Fetching list of peers</h1>');
     return api.remotes(server)
       .then(function(remotes) {
+        $container.html(progressBarTemplate({
+          number: 0,
+          max: remotes.length,
+          percent: 0
+        }));
+
         return Bluebird.each(remotes, function(remote) {
           if (remote.match(/^dashboard/)) return;
           return rpc.invoke(remote, 'obj', [])

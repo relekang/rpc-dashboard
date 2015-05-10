@@ -8,3 +8,7 @@
   color: gray;
   cursor: pointer;
 }
+
+.text-center {
+  text-align: center;
+}
