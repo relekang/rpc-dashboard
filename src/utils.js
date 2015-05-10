@@ -77,15 +77,27 @@ module.exports = function utils(rpc, server, template) {
   }
 
   function get(hash, key) {
-    return rpc.invoke(hash, 'get', [key])
-      .then(function(result) {
-        alerts.success('Fetch "' + result.value + '" from node "' + result.peer + '"');
-        return result;
+    function timedGet(key, implementation) {
+      var start = Date.now();
+      return rpc.invoke(hash, 'get', [key, implementation])
+        .then(function(result) {
+          result.end = Date.now();
+          result.start = start;
+          result.time = result.end - result.start;
+          return result;
+        });
+    }
+
+    return Bluebird.all([timedGet(key, 'scalable'), timedGet(key, 'geo')])
+      .spread(function(scalable, geo) {
+        alerts.success('(scalable) Fetched  "' + scalable.value + '" from node "' + scalable.peer + '" in ' + scalable.time + ' ms');
+        alerts.success('(geo) Fetched  "' + geo.value + '" from node "' + geo.peer + '" in ' + geo.time + ' ms');
+        return [scalable, geo];
       });
   }
 
   function set(hash, key, value) {
-    return rpc.invoke(hash, 'set', [key, value])
+    return rpc.invoke(hash, 'set', [key, value, 'scalable'])
       .then(function(result) {
         alerts.success('Set');
         return result;
