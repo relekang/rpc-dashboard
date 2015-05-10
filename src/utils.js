@@ -24,6 +24,7 @@ module.exports = function utils(rpc, server, template) {
           return rpc.invoke(remote, 'obj', [])
             .then(function(data) {
               items[remote] = JSON.parse(data);
+              items[remote].raw = JSON.stringify(items[remote], null, 2);
               $container.html(progressBarTemplate({
                 number: remotes.indexOf(remote) + 1,
                 max: remotes.length,
@@ -44,6 +45,7 @@ module.exports = function utils(rpc, server, template) {
     return rpc.invoke(hash, 'obj', [])
       .then(function(data) {
         items[hash] = JSON.parse(data);
+        items[hash].raw = JSON.stringify(items[hash], null, 2);
         render($container, done);
       });
   }
