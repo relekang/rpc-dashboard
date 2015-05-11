@@ -33,9 +33,9 @@ describe('api-handlers', function() {
       );
 
       expect(
-        ['222222', 'cccccc', '333333', '000000'].sort(api.peersComparator)
+        ['592667','e1f4a5','7091c1','02197c','e8b4ff','3adbd2','42cc0b','bf9dd2'].sort(api.peersComparator)
       ).to.eql(
-        ['000000', '222222', '333333', 'cccccc']
+        ['02197c', '3adbd2', '42cc0b', '592667', '7091c1', 'bf9dd2', 'e1f4a5', 'e8b4ff']
       );
     });
   });

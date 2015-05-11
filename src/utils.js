@@ -111,6 +111,10 @@ module.exports = function utils(rpc, server, template) {
     for (var key in items) {
       listOfItems.push(items[key]);
     }
+    
+    listOfItems.sort(function(a, b) {
+      return api.peersComparator(a.hash, b.hash);
+    });
 
     $container.html(template({ items: listOfItems}));
 
