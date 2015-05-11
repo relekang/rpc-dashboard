@@ -2,5 +2,6 @@ setup_tasks:
  - npm install
 
 tasks:
+ - npm test
  - node_modules/.bin/jshint src index.js
  - node_modules/.bin/jscs src index.js

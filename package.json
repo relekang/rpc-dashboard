@@ -5,7 +5,7 @@
   "main": "index.js",
   "browser": "src/dashboard.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test",
     "make": "browserify -t browserify-handlebars src/main.js -o public/bundle.js",
     "watchify": "watchify -t browserify-handlebars src/main.js -o public/bundle.js",
     "watch": "npm run watchify & node index.js",
@@ -28,8 +28,11 @@
     "sha1": "^1.1.0"
   },
   "devDependencies": {
+    "chai": "^2.3.0",
+    "chai-as-promised": "^5.0.0",
     "jscs": "^1.13.1",
     "jshint": "^2.7.0",
+    "mocha": "^2.2.4",
     "watchify": "^3.2.1"
   }
 }
