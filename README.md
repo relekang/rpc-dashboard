@@ -18,7 +18,7 @@ var dashboard = require('rpc-dashboard');
 
 
 dashboard.init({
-  containerSelector: '#container',
+  container: $('#container'), // could also just be the selector
   fetchClients: function() { return listOrPromiseOfAListOfPeerIDs; },
   func: 'toJSON',
   rpcOptions: require('./rpc-options'),
