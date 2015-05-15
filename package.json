@@ -5,15 +5,18 @@
   "main": "index.js",
   "browser": "src/dashboard.js",
   "scripts": {
-    "test": "mocha test",
-    "make": "browserify -t browserify-handlebars src/main.js -o public/bundle.js",
-    "watchify": "watchify -t browserify-handlebars src/main.js -o public/bundle.js",
+    "test": "mocha test --compilers js:babel/register",
+    "make": "browserify -t babelify -t browserify-handlebars src/main.js -o public/bundle.js",
+    "watchify": "watchify -t babelify -t browserify-handlebars src/main.js -o public/bundle.js",
     "watch": "npm run watchify & node index.js",
+    "lint": "jshint src test && jscs src test",
     "postinstall": "npm run make"
   },
   "author": "Rolf Erik Lekang",
   "license": "MIT",
   "dependencies": {
+    "babel": "^5.4.2",
+    "babelify": "^6.1.0",
     "bluebird": "^2.9.25",
     "browser-request": "^0.3.3",
     "browserify": "^10.1.0",

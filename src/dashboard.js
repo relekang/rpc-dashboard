@@ -1,25 +1,27 @@
-var $ = require('jquery');
-var sha1 = require('sha1');
-var RPC = require('peerjs-rpc');
+import $ from 'jquery';
+import sha1 from 'sha1';
+import RPC from 'peerjs-rpc';
 
-module.exports.init = function init(options) {
+export function init(options) {
   var rpc = new RPC('dashboard' + sha1(Date.now().toString()), {}, options.rpcOptions);
-  var utils = require('./utils')(rpc, options.rpcOptions.server, options.template);
+  var utils = require('./utils')(rpc, options);
 
-  var $container = $(options.containerSelector);
+  var $container = $(options.container);
   var $btn = $('.refresh-btn');
 
   $btn.addClass('fa-spin');
   utils.update($container, options.onRendered)
-    .then(function() {
+    .then(() => {
       $btn.removeClass('fa-spin');
     });
 
-  $btn.on('click', function() {
+  $btn.on('click', e => {
     $btn.addClass('fa-spin');
     utils.update($container, options.onRendered)
-      .then(function() {
+      .then(() => {
         $btn.removeClass('fa-spin');
       });
   });
-};
+
+  return {rpc: rpc};
+}

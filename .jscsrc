@@ -1,5 +1,6 @@
 {
     "preset": "airbnb",
+    "esnext": true,
     "excludeFiles": ["node_modules/**", "coverage/**", ".git/**"],
     "validateIndentation": 2,
     "disallowMultipleVarDecl": true,
