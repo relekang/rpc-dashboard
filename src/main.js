@@ -1,9 +1,9 @@
 import $ from 'jquery';
 import Bluebird from 'bluebird';
-import {init} from './dashboard';
+import {init} from '../lib/dashboard';
+import alerts from '../lib/alerts';
 import template from './templates/nodes.handlebars';
 import api from './api';
-import alerts from './alerts';
 import options from './rpc-options';
 
 var $container = $('#container');

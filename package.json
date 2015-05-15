@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "browser": "src/dashboard.js",
+  "browser": "lib/dashboard.js",
   "scripts": {
     "test": "mocha test --compilers js:babel/register",
     "make": "browserify -t babelify -t browserify-handlebars src/main.js -o public/bundle.js",
