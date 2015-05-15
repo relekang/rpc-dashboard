@@ -36,6 +36,11 @@ dashboard.init({
 
 ```
 
+## Example screenshot
+Below is a screenshot of the implementation used with a peerjs Chord implementation.
+The code generating this dashboard can be found in [src/main.js](src/main.js)
+![Chord example](screenshot.png)
+
 ## Configuration
 Host can be set with adding it as get parameter in the url
 `http://127.0.0.1:3000?127.0.0.1:5000`
