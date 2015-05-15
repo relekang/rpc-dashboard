@@ -60,10 +60,7 @@ export default function utils(rpc, options) {
       listOfItems.push(items[key]);
     }
 
-    listOfItems.sort((a, b) => {
-      return peersComparator(a.hash, b.hash);
-    });
-
+    listOfItems.sort(options.peerComparator);
     $container.html(template({ items: listOfItems}));
 
     if (done) done({update: update, updateItem: updateItem, rpc: rpc});

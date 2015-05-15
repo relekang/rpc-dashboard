@@ -25,6 +25,12 @@ dashboard.init({
   template: require('./templates/nodes.handlebars'),
   onRendered: function onRendered(utils) {
     // rewire listeners
+  },
+
+  peerComparator: function peerComparator(a, b) {
+    // comparator used in sorting of the array
+    // before it is sent to the template.
+    return 0
   }
 });
 

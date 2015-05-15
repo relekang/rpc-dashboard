@@ -15,6 +15,10 @@ var dashboard = init({
   onRendered: onRendered,
   fetchClients: () => {
     return api.remotes(options.server);
+  },
+
+  peerComparator: (a, b) => {
+    return api.peersComparator(a, b);
   }
 });
 
